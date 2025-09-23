@@ -6,4 +6,4 @@
 # pip3 install -r requirements.txt
 
 cd $(dirname $0)
-venv/bin/python3 ./connect_mgm.py
+venv/bin/python3 ./connect_cisco.py

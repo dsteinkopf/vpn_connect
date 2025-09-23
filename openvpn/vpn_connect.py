@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# connect Redcare VPN
+# connect to an open VPN
 #
 # DSTK_2025-01-17
 #
@@ -20,7 +20,6 @@ load_dotenv()
 BW_SESSION = os.getenv("BW_SESSION")
 VPN_PASSWORD_ENTRY_ID = os.getenv("VPN_PASSWORD_ENTRY_ID")
 CONNECTION_NAME = os.getenv("CONNECTION_NAME")
-# mac_connection_path = '/Library/Application Support/Tunnelblick/Users/stk/dSteinkopf@de-cgn01-fw01.my-eav.net.tblk'
 
 def load_password():
     print('receiving password and token from bitwarden')

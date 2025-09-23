@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 #
-# Connext to mgm vpn
+# Connect to a cisco vpn
 #
 # DSTK_2025-09-16 copied from vpn_connect.py
 #
-# /opt/cisco/secureclient/bin/vpn connect "2FA mgm gateway munich (SSL)"
+# /opt/cisco/secureclient/bin/vpn connect "Name of the VPN Profile"
 # /opt/cisco/secureclient/bin/vpn disconnect
 
 
