@@ -6,4 +6,4 @@
 # pip3 install -r requirements.txt
 
 cd $(dirname $0)
-venv/bin/python3 ./vpn_connect.py
+venv/bin/python3 ./vpn_connect.py "$@"
