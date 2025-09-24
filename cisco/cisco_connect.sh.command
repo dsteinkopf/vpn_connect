@@ -1,9 +1,4 @@
 #!/bin/bash
 
-# init with
-# python3 -m venv venv
-# source venv/bin/activate
-# pip3 install -r requirements.txt
-
 cd $(dirname $0)
-venv/bin/python3 ./connect_cisco.py
+.venv/bin/python3 ./cisco_connect.py
