@@ -1,30 +1,25 @@
-# Setup
+# vpn_connect
 
-**init virtual environment with**:
+This repo contains simple scripts to quickly connect to cisco vpn or openvpen.
+This will only work if you have your credentials storde in bitwarden.
 
-```bash
-python3 -m venv .venv
-```
-
-**activate the env**:
+## Initial setup
 
 ```bash
+# init virtual environment with
+python3 -m venv .venv 
+
+# activate the env
 source .venv/bin/activate
-```
 
-**install dependencies**:
-
-```bash
+# install dependencies
 pip3 install -r requirements.txt
-```
 
-**prepare the env**:
-
-```bash
+# prepare the env
 cp .env.dist .env
 ```
 
-## Install bitwarden cli
+**Install bitwarden cli**:
 
 [bitwarden-cli via brew](https://formulae.brew.sh/formula/bitwarden-cli)
 
@@ -32,16 +27,22 @@ cp .env.dist .env
 brew install bitwarden-cli
 ```
 
-## Get the info for the .env
+**Get the info for the .env**:
 
 ```bash
 bw login
-bw unlock => Copy the session_id here
 bw list items --search "name-of-your-openvpn-password-entry"
 bw list items --search "name-of-your-cisco-password-entry"
+bw unlock => Copy the session_id here
 ```
 
-The response contains the entry id which you will need for the .env variables.
+> The `bw list items` command seems to lock the vault again!
+> You need to unlock after every search to get the current session_id
+
+## Connecting to a vpn with the script
+
+Spotlight in macOs should be able to find the *_connect.sh.command files.
+Just search for the one matching the VPN and press enter.
 
 ## Troubleshooting
 
@@ -54,7 +55,8 @@ bw login
 bw unlock => Copy the session_id here
 ```
 
-## Connecting to a vpn with the script
+If bitwarden seems to take forever you likely didn't unlock your vault
 
-Spotlight in macOs should be able to find the *_connect.sh.command files.
-Just search for the one matching the VPN and press enter.
+```bash
+bw unlock => Copy the session_id to your .env
+```

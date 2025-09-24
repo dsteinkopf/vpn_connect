@@ -12,19 +12,19 @@ import subprocess
 
 from dotenv import load_dotenv
 
-load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
+load_dotenv()
 
 VPN_PATH = "/opt/cisco/secureclient/bin/vpn"
 
 BW_SESSION = os.getenv("BW_SESSION")
-OPENVPN_PASSWORD_ENTRY_ID = os.getenv("OPENVPN_PASSWORD_ENTRY_ID")
-OPENVPN_PROFILE = os.getenv("OPENVPN_PROFILE")
+CISCO_PASSWORD_ENTRY_ID = os.getenv("CISCO_PASSWORD_ENTRY_ID")
+CISCO_GATEWAY_HOST_NAME = os.getenv("CISCO_GATEWAY_HOST_NAME")
 
 def load_credentials():
     print('receiving password and token from bitwarden')
-    vpn_username_query = f'bw get username {OPENVPN_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
-    vpn_password_query = f'bw get password {OPENVPN_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
-    vpn_totp_query = f'bw get totp {OPENVPN_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
+    vpn_username_query = f'bw get username {CISCO_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
+    vpn_password_query = f'bw get password {CISCO_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
+    vpn_totp_query = f'bw get totp {CISCO_PASSWORD_ENTRY_ID} --session {BW_SESSION}'
 
     username = subprocess.getoutput(vpn_username_query).split('\n')[-1]
     password = subprocess.getoutput(vpn_password_query).split('\n')[-1]
@@ -37,7 +37,7 @@ def start_cisco_vpn(username, password, token):
         stdin=subprocess.PIPE,
         text=True
     )
-    commands = f"""connect "{OPENVPN_PROFILE}"
+    commands = f"""connect "{CISCO_GATEWAY_HOST_NAME}"
 {username}
 {password}
 {token}
